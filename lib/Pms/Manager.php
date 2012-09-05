@@ -255,9 +255,9 @@ final class Pms_Manager
     /**
      * Execute the command line action
      */
-    public static function dispatch()
+    public static function dispatch(array $args = null)
     {
-        $args = $_SERVER['argv'];
+        $args = isset($args) ? $args : $_SERVER['argv'];
         if(count($args) == 1){
             $args[1] = 'migrate';
         }
