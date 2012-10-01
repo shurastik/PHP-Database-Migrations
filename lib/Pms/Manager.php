@@ -273,11 +273,11 @@ final class Pms_Manager
                 break;
             case 'migrate':
             case 'up':
-		if ($args[1] == 'migrate') {
-			$version = isset($args[2]) && $args[2] ? $args[2] : null;
-		} else {
-			$version = self::getNextVersion();
-		}
+				if ($args[1] == 'migrate') {
+					$version = isset($args[2]) && $args[2] ? $args[2] : null;
+				} else {
+					$version = self::getNextVersion();
+				}
 
                 if($version !== false){
                     $sequencer = new Pms_Sequencer(self::getMigrationStorage());
