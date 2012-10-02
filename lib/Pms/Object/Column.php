@@ -79,9 +79,9 @@ class Pms_Object_Column extends Pms_Object_Abstract
             else if(is_string($this->_info['default'])) $return[] = "DEFAULT ".$this->_adapter->quote($this->_info['default']);
             else $return[] = "DEFAULT {$this->_info['default']}";
         }
-        if($this->_info['ai'])
+        if(isset($this->_info['ai']) && $this->_info['ai'])
             $return[] = 'auto_increment';
-        if($this->_info['primary'])
+        if(isset($this->_info['primary']) && $this->_info['primary'])
             $return[] = 'primary key';
 
         return implode(" ", $return);
