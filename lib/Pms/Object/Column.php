@@ -99,7 +99,7 @@ class Pms_Object_Column extends Pms_Object_Abstract
         if($length){
             $return[] = "({$length})";
         }
-        if($length && $this->_info['unsigned']){
+        if($length && isset($this->_info['unsigned']) && $this->_info['unsigned']){
             $return[] = " unsigned";
         }
         return implode("", $return);
