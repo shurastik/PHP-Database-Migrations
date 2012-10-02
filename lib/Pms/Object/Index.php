@@ -69,10 +69,10 @@ class Pms_Object_Index extends Pms_Object_Abstract
      */
     public function isValidIndex()
     {
-        return isset($this->_info['key']) && $this->_info['key'] ||
-	            isset($this->_info['unique']) && $this->_info['unique'] ||
-	            isset($this->_info['foreign']) && $this->_info['foreign'] ||
-	            isset($this->_info['fulltext']) && $this->_info['fulltext'];
+        return $this->_info['key'] ||
+	            $this->_info['unique'] ||
+	            $this->_info['foreign'] ||
+	            $this->_info['fulltext'];
     }
 
     /**
@@ -83,6 +83,19 @@ class Pms_Object_Index extends Pms_Object_Abstract
      */
     public function assemble()
     {
+	    if (!isset($this->_info['key'])) {
+		    $this->_info['key'] = null;
+	    }
+	    if (!isset($this->_info['unique'])) {
+		    $this->_info['unique'] = null;
+	    }
+	    if (!isset($this->_info['foreign'])) {
+		    $this->_info['foreign'] = null;
+	    }
+	    if (!isset($this->_info['fulltext'])) {
+		    $this->_info['fulltext'] = null;
+	    }
+
         $identifier = str_replace(',','_',$this->_identifier);
 
         if(!$this->isValidIndex()) throw new Pms_Exception("Trying to assemble an invalid index. Check first.");
