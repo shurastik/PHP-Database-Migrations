@@ -340,7 +340,7 @@ final class Pms_Manager
      */
     public static function hooks($integrationPoint, $params)
     {
-        $list = self::$_hooks[$integrationPoint];
+        $list = isset(self::$_hooks[$integrationPoint]) ? self::$_hooks[$integrationPoint] : null;
         if($list)
             foreach($list as $hook){
                 $hook->execute($params);
