@@ -138,19 +138,20 @@ class Pms_Sequencer
             return;
         }
         $adapter = Pms_Manager::getAdapter();
-        $adapter->beginTransaction();
-        try{
-            foreach($sequence as $version => $s){
+        foreach($sequence as $version => $s){
+            Pms_Printer::pr($version.' '.$method."\n");
+            $adapter->beginTransaction();
+            try{
                 call_user_func_array(array($s, $method), array());
                 $achievedVersion = $method == 'down' ? $this->lookupPrevVersion($version) : $version;
-            }
-            $adapter->commit();
-        }catch(Exception $e){
-            $adapter->rollback();
-            Pms_Printer::pr('Error encountered (current version '.$achievedVersion.'): '.$e->getMessage()."\n");
+                $adapter->commit();
+	            Pms_Manager::setCurrentVersion($achievedVersion);
+	        }catch(Exception $e){
+	            $adapter->rollback();
+	            Pms_Printer::pr('Error encountered (current version '.$achievedVersion.'): '.$e->getMessage()."\n");
+                break;
+	        }
         }
-
-        Pms_Manager::setCurrentVersion($achievedVersion);
         Pms_Printer::pr("\n=== MIGRATION ENDED ============================================");
     }
 

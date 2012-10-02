@@ -83,6 +83,9 @@ class Pms_Object_Index extends Pms_Object_Abstract
      */
     public function assemble()
     {
+	    if (!isset($this->_info['index'])) {
+            $this->_info['index'] = null;
+        }
 	    if (!isset($this->_info['key'])) {
 		    $this->_info['key'] = null;
 	    }
