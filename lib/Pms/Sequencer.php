@@ -177,6 +177,7 @@ class Pms_Sequencer
         }else{
             throw new Pms_Exception('The specified resource is not a directory: '.$dir);
         }
+	    sort($files);
         return $files;
     }
 
