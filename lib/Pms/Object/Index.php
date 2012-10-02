@@ -120,9 +120,9 @@ class Pms_Object_Index extends Pms_Object_Abstract
             $name = $this->_adapter->quoteIdentifier($this->_info['table']."_ibfk_".$identifier);
             $return1 = "";
             $return1.= "CONSTRAINT {$name} FOREIGN KEY (".$this->_adapter->quoteIdentifier($this->_identifier).") REFERENCES ".$this->_adapter->quoteIdentifier($this->_info['foreign']['table'])." (".$this->_adapter->quoteIdentifier($this->_info['foreign']['column']).")";
-            if($delete = $this->_info['foreign']['delete'])
+            if(isset($this->_info['foreign']['delete']) && $delete = $this->_info['foreign']['delete'])
                 $return1.= " ON DELETE ".$delete;
-            if($update = $this->_info['foreign']['update'])
+            if(isset($this->_info['foreign']['update']) && $update = $this->_info['foreign']['update'])
                 $return1.= " ON UPDATE ".$update;
 
             $return[] = $return1;
