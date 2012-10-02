@@ -139,7 +139,7 @@ class Pms_Sequencer
         }
         $adapter = Pms_Manager::getAdapter();
         foreach($sequence as $version => $s){
-            Pms_Printer::pr($version.' '.$method."\n");
+            Pms_Printer::pr('execute '.$version.' '.$method);
             $adapter->beginTransaction();
             try{
                 call_user_func_array(array($s, $method), array());

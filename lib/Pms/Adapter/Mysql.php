@@ -135,9 +135,9 @@ class Pms_Adapter_Mysql extends Pms_Adapter_Abstract
         $col = new Pms_Object_Column($name, $options);
 
         $where = '';
-        if($options['first']){
+        if(isset($options['first']) && $options['first']){
             $where = ' FIRST';
-        }else if($options['after']){
+        }else if(isset($options['after']) && $options['after']){
             $where = ' AFTER '.$options['after'];
         }
         try{
