@@ -16,7 +16,28 @@ class Pms_Object_Index extends Pms_Object_Abstract
      */
     protected $_type = 'index';
 
-    /**
+	public function __construct($identifier, $info = null) {
+		parent::__construct($identifier, $info);
+
+		if (!isset($this->_info['index'])) {
+            $this->_info['index'] = null;
+        }
+	    if (!isset($this->_info['key'])) {
+		    $this->_info['key'] = null;
+	    }
+	    if (!isset($this->_info['unique'])) {
+		    $this->_info['unique'] = null;
+	    }
+	    if (!isset($this->_info['foreign'])) {
+		    $this->_info['foreign'] = null;
+	    }
+	    if (!isset($this->_info['fulltext'])) {
+		    $this->_info['fulltext'] = null;
+	    }
+	}
+
+
+	/**
      * The db adapter created by Pms_Manager
      *
      * @var Pms_Adapter_Abstract
@@ -83,21 +104,6 @@ class Pms_Object_Index extends Pms_Object_Abstract
      */
     public function assemble()
     {
-	    if (!isset($this->_info['index'])) {
-            $this->_info['index'] = null;
-        }
-	    if (!isset($this->_info['key'])) {
-		    $this->_info['key'] = null;
-	    }
-	    if (!isset($this->_info['unique'])) {
-		    $this->_info['unique'] = null;
-	    }
-	    if (!isset($this->_info['foreign'])) {
-		    $this->_info['foreign'] = null;
-	    }
-	    if (!isset($this->_info['fulltext'])) {
-		    $this->_info['fulltext'] = null;
-	    }
 
         $identifier = str_replace(',','_',$this->_identifier);
 
