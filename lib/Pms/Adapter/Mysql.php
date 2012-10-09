@@ -105,11 +105,11 @@ class Pms_Adapter_Mysql extends Pms_Adapter_Abstract
                 CREATE TABLE {$name}(
                 ".implode(",\n", $columnsQ)."
                 )
-                ENGINE=".($options['engine'] ? $options['engine'] : 'InnoDB')."
-                CHARACTER SET ".($options['charset'] ? $options['charset'] : 'utf8')."
-                COLLATE ".($options['collation'] ? $options['collation'] : 'utf8_general_ci').";";
+                ENGINE=".(isset($options['engine']) ? $options['engine'] : 'InnoDB')."
+                CHARACTER SET ".(isset($options['charset']) ? $options['charset'] : 'utf8')."
+                COLLATE ".(isset($options['collation']) ? $options['collation'] : 'utf8_general_ci').";";
 
-            if($options['debug']){
+            if(isset($options['debug']) && $options['debug']){
                 echo "Query:\n".$q."\n";
             }
             $this->query($q);
