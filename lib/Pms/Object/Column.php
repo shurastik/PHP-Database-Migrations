@@ -95,7 +95,7 @@ class Pms_Object_Column extends Pms_Object_Abstract
     public function assembleType()
     {
         $return = array($this->_info['type']);
-        $length = $this->_info['length'] ? $this->_info['length'] : $this->_adapter->defaultColumnLengths[$this->_info['type']];
+        $length = isset($this->_info['length']) && $this->_info['length'] ? $this->_info['length'] : $this->_adapter->defaultColumnLengths[$this->_info['type']];
         if($length){
             $return[] = "({$length})";
         }
