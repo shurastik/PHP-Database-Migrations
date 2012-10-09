@@ -73,7 +73,7 @@ class Pms_Object_Column extends Pms_Object_Abstract
     public function assemble()
     {
         $return = array($this->_adapter->quoteIdentifier($this->_identifier), $this->assembleType());
-        $return[] = $this->_info['null'] ? 'NULL' : 'NOT NULL';
+        $return[] = isset($this->_info['null']) && $this->_info['null'] ? 'NULL' : 'NOT NULL';
         if(isset($this->_info['default'])){
             if($this->_info['default'] === 'NULL') $return[] = 'DEFAULT NULL';
             else if(is_string($this->_info['default'])) $return[] = "DEFAULT ".$this->_adapter->quote($this->_info['default']);
